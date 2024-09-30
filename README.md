@@ -1,23 +1,20 @@
 # Free Untis
-
 ## How to Install
 - Clone the repo to your desired destination
 - Create a <code>.env</code> File 
-- Type the following content: </br>
-<code>PORT_BACKEND=8000
+- Insert the following content (change values as you desire):
+```
+PORT_BACKEND=8000
 PORT_FRONTEND=3000
 FREEUNTIS_SERVERNAME=localhost
-TOKEN_SECRET=your_token_secret 
-</code> </br>
+TOKEN_SECRET=your_token_secret
+```
 - You MUST specify the TOKEN_SECRET, otherwise the application will not run!
-- If you don't specify the PORTs, the default will be 3000 for frontend and 8000 for backend.
-- If you don't specify the FREEUNTIS_SERVERNAME, the default will be localhost.
+- If you don't specify the PORTs, the default will be <code>3000</code> for frontend and <code>8000</code> for backend.
+- If you don't specify the FREEUNTIS_SERVERNAME, the default will be <code>localhost</code>.
 
-
-## Lokal Testen
-### Docker Compose
-Um Backend und Frondend lokal zu testen führe folgenden Befehl aus:
+Fire up your container with:
 ```
 docker compose up -d
 ```
-Anschließen im Browser auf http://localhost:3000/ zugreifen.
+Open Browser and go to  http://localhost:3000/ (or whatever hostname:port you chose)
