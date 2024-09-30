@@ -1,0 +1,52 @@
+/* Light Theme 
+:root,
+[data-bs-theme="light"] {
+    --bs-primary: #3AC4FC;      
+    --bs-secondary: #3A63FC;
+    --bs-tertiary: #3AFCD2;
+
+    --bs-success: #28a745;
+    --bs-info: #17a2b8;
+    --bs-warning: #ffc107;
+    --bs-danger: #dc3545;
+
+    --bs-light: #f8f9fa;
+    --bs-dark: #343a40;
+
+    --bs-body-bg: #fff;
+    --bs-body-color: #212529;
+
+    --bs-shadow: #c9c9c9;
+
+
+    --bs-btn-bg: var(--bs-primary) !important;
+    --bs-btn-border-color: var(--bs-primary) !important;
+    --bs-btn-hover-bg: var(--bs-secondary) !important;
+
+}
+
+
+[data-bs-theme="dark"] {
+    --bs-primary: #13647c;
+    --bs-secondary: #446166;
+    --bs-tertiary: #3AC4FC;
+
+    --bs-success: #198754;
+    --bs-info: #0dcaf0;
+    --bs-warning: #ffc107;
+    --bs-danger: #dc3545;
+
+    --bs-light: #212529;
+    --bs-dark: #f8f9fa;
+
+    --bs-body-bg: #344849;
+    --bs-body-color: #f8f9fa;
+
+    --bs-shadow: #252525;
+
+    --bs-btn-bg: var(--bs-secondary) !important;
+    --bs-btn-border-color: var(--bs-secondary) !important;
+    --bs-btn-hover-bg: var(--bs-tertiary) !important;
+}
+
+- light-web2 */

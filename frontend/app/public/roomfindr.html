@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Finder</title>
+    <!-- Einbindung von Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Einbindung von Font Awesome für Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Einbindung von benutzerdefiniertem CSS für die Seite -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/roomfindr.css">
+    <!-- Favicon für die Seite -->
+    <link rel="icon" href="icons/favicon.png" sizes="32x32" type="image/png">
+    <!-- Einbindung von JavaScript-Dateien -->
+    <script src="js/color-modes.js"></script>
+    <script src="js/checkIfLoggedIn.js"></script>
+</head>
+
+<body class="bg-body-tertiary" style="display: flex; flex-direction: column;">
+    <!--Navbar-->
+    <nav class="navbar bg-primary-subtle navbar-expand-lg">
+        <div class="container-fluid">
+          <!--Logo-->
+          <a href="#" class="navbar-brand mt-2 mt-lg-0"><img src="icons/logo_dark.svg" alt="Logo" height="50"
+              loading="lazy" /></a>
+          <!-- Hauptnavigation -->
+          <ul class="nav me-auto">
+            <li>
+              <a href="index.html" class="btn px-2 ">Home</a>
+            </li>
+            <li>
+              <a href="roomfindr.html" class="btn px-2 ">Room Finder</a>
+            </li>
+          </ul>
+          <!-- Benutzeraktionen -->
+          <div class="d-flex align-items-center">
+            <!--Logout-Button-->
+            <button id="logout-button" type="button" class="btn " onclick="logout()">
+              Logout
+            </button>
+            <!--Login-Button-->
+            <button id="login-button" type="button" class="btn " onclick="location.href='login.html'">
+              Login
+            </button>
+            <!--Register-Button-->
+            <button id="register-button" type="button" class="btn" onclick="location.href='registration.html'">
+              Registrieren
+            </button>
+            <!--Trennlinie-->
+            <div class="vr"></div>
+    
+            <!--Notification-Box
+            <div id="notification-box" class="dropdown">
+              <a class="btn dropdown-toggle" id="notificationDropdown" data-bs-toggle="dropdown">
+                <i class="fas fa-bell fa-lg"> </i>
+                <span class="badge rounded-pill badge-notification bg-danger" style="margin-left: -5px">3</span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-end " aria-labelledby="notificationDropdown">
+                <a class="dropdown-item" href="#">WebAnw2 entfällt!</a>
+                <a class="dropdown-item" href="#">IT-Recht entfällt!</a>
+                <a class="dropdown-item" href="#">CybSec raum wechsel!</a>
+              </div>
+            </div>
+            <div class="vr"></div>
+            -->
+          </div>
+          <!--Dark Mode Toggle-->
+          <div class=" text-end dropdown bd-mode-toggle">
+            <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+              <!-- Symbole für die Schaltflächen -->
+              <symbol id="check2" viewBox="0 0 16 16">
+                <path
+                  d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
+              </symbol>
+              <symbol id="circle-half" viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z" />
+              </symbol>
+              <symbol id="moon-stars-fill" viewBox="0 0 16 16">
+                <path
+                  d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z" />
+                <path
+                  d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z" />
+              </symbol>
+              <symbol id="sun-fill" viewBox="0 0 16 16">
+                <path
+                  d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z" />
+              </symbol>
+            </svg>
+            <button class="btn dropdown-toggle d-flex align-items-center me-3" id="bd-theme" type="button"
+              aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (auto)">
+              <svg class="bi my-1 theme-icon-active" width="1em" height="1em">
+                <use href="#circle-half"></use>
+              </svg>
+              <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
+            </button>
+             <!-- Dropdown-Menü für die Theme-Auswahl -->
+            <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
+              <li>
+                <!-- Button für Light Theme -->
+                <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light"
+                  aria-pressed="false">
+                  <svg class="bi me-2 opacity-50" width="1em" height="1em">
+                    <use href="#sun-fill"></use>
+                  </svg>
+                  Light
+                  <svg class="bi ms-auto d-none" width="1em" height="1em">
+                    <use href="#check2"></use>
+                  </svg>
+                </button>
+              </li>
+              <li>
+                <!-- Button für Dark Theme -->
+                <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark"
+                  aria-pressed="false">
+                  <svg class="bi me-2 opacity-50" width="1em" height="1em">
+                    <use href="#moon-stars-fill"></use>
+                  </svg>
+                  Dark
+                  <svg class="bi ms-auto d-none" width="1em" height="1em">
+                    <use href="#check2"></use>
+                  </svg>
+                </button>
+              </li>
+              <li>
+                <!-- Button für Auto -->
+                <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto"
+                  aria-pressed="true">
+                  <svg class="bi me-2 opacity-50" width="1em" height="1em">
+                    <use href="#circle-half"></use>
+                  </svg>
+                  Auto
+                  <svg class="bi ms-auto d-none" width="1em" height="1em">
+                    <use href="#check2"></use>
+                  </svg>
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+    
+      </nav>
+
+    <main class="roomfindr-container flex-column">
+        <!-- Room Finder Menü -->
+        <div class="roomfindr-menu">
+            <!-- Dropdown-Menü für Gebäudeauswahl -->
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    Gebäude Auswählen
+                </button>
+                <ul id= "buildingDropdown" class="dropdown-menu">
+                  <!-- Hier werden die Gebäudeoptionen dynamisch hinzugefügt -->
+                </ul>
+            </div>
+            <!-- Zeitpicker für die Raumauswahl -->
+            <div class="roomfindr-timepicker">
+                <input type="datetime-local" name="roomfindr-time" id="roomfindr-time" class="form-control">
+                <!-- JavaScript, um die aktuelle Zeit im Zeitpicker zu setzen -->
+                <script>
+                    const currentTime = new Date()
+                    document.getElementById('roomfindr-time').value = currentTime.toISOString().slice(0, 16);
+                </script>
+            </div>
+            <!-- Suchbutton -->
+            <button id="btn-search" class="btn btn-primary">Raum Finden</button>
+        </div>
+        <!-- Liste mit freien Räumen -->
+        <table class="table table-striped mt-5">
+            <thead>
+                <tr>
+                    <th scope="col">Raumnr.</th>
+                    <th scope="col">Raum</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody id="roomTable">
+              <!-- Hier werden die gefundenen Räume dynamisch hinzugefügt -->
+            </tbody>
+        </table>
+    </main>
+
+    <!-- Einbindung von Bootstrap JS und anderen JS-Dateien -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/user.js"></script>
+    <script src="js/roomFinder.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,15 @@
+
+.roomfindr-container {
+    padding: 3rem 10rem;
+}
+
+.roomfindr-menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+.roomfindr-timepicker {
+    margin-left: 3rem;
+    margin-right: 3rem;
+}

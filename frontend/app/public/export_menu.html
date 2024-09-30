@@ -1,0 +1,40 @@
+<!-- Button trigger modal / Bootstrap-Button, der das Modal öffnet -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Export
+</button>
+
+<!-- Export Modal -->
+ <!-- Startet das Modal-Div / mit Bootstrap-Stilen zur Animation-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- Container für Dialog Layout -->
+    <div class="modal-dialog">
+        <!-- Container fuer Dialog Inhalt-->
+        <div class="modal-content">
+            <!-- Container fuer Kopfbereich Modal -->
+            <div class="modal-header">
+                <!-- Titel des Modals -->
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Export Calendar Menu</h1>
+                <!-- Schliessen- Button -->
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <!-- Container fuer Hauptinhalt Modal-->
+            <div class="modal-body">
+                <!-- Testdaten-->
+                <div> <!--FROM-->
+                    From: test
+                </div>
+                <div> <!--TO-->
+                    To: test
+                </div>
+
+            </div>
+            <!-- Container Modal Footer -->
+            <div class="modal-footer">
+                <!-- Schliessen- Button-->
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <!-- Export- Button -->
+                <button type="button" class="btn btn-primary">Export</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Enthält Metadaten und Links zu externen Ressourcen -->
+<head>
+  <!-- Zeichenkodierung-->
+  <meta charset="UTF-8" />
+  <!-- Anzeige an Bildschirm anpassen -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weekly Calendar</title>
+  <!-- Bindet Bootstrap- CSS und andere CSS Dateien ein -->
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/index.css" />
+  <link rel="stylesheet" href="css/colors.css" />
+  <!-- Setzt das Favicon der Website-->
+  <link rel="icon" href="icons/favicon.png" sizes="32x32" type="image/png" />
+  <!-- Eigene JavaScript-Dateien einbinden -->
+  <script src="js/color-modes.js"></script>
+  <script src="js/checkIfLoggedIn.js"></script>
+</head>
+
+<!-- Hauptteil der Website-->
+ <!-- Setzen des Designs und der Anzeigeart -->
+<body class="bg-body-tertiary" style="display: flex; flex-direction: column">
+  <!--Navbar Beginn-->
+  <nav class="navbar bg-primary-subtle navbar-expand-lg">
+    <!-- Container für die Navigationsleiste -->
+    <div class="container-fluid">
+      <!-- Logo und Link zur Startseite -->
+      <a href="#" class="navbar-brand mt-2 mt-lg-0"><img src="icons/logo_dark.svg" alt="Logo" height="50"
+          loading="lazy" /></a>
+      <!-- Beginn der Navigationslinks -->
+      <ul class="nav me-auto">
+        <li>
+          <!-- Link zur Startseite -->
+          <a href="index.html" class="btn px-2 ">Home</a>
+        </li>
+        <li>
+          <!-- Link zum Roomfindr -->
+          <a href="roomfindr.html" class="btn px-2 ">Room Finder</a>
+        </li>
+      </ul>
+      <!-- Container für Anmelde- und Registrierungsbuttons -->
+      <div class="d-flex align-items-center">
+        <!--Logout-Button-->
+        <button id="logout-button" type="button" class="btn " onclick="logout()">
+          Logout
+        </button>
+        <!--Login-Button-->
+        <button id="login-button" type="button" class="btn " onclick="location.href='login.html'">
+          Login
+        </button>
+        <!--Register-Button-->
+        <button id="register-button" type="button" class="btn" onclick="location.href='registration.html'">
+          Registrieren
+        </button>
+        <!-- Vertikale Linie zur Trennung -->
+        <div class="vr"></div>
+
+        <!--Notification-Box-->
+        <!--
+        <div id="notification-box" class="dropdown">
+          <a class="btn dropdown-toggle" id="notificationDropdown" data-bs-toggle="dropdown">
+            <i class="fas fa-bell fa-lg"> </i>
+            <span class="badge rounded-pill badge-notification bg-danger" style="margin-left: -5px">3</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-end " aria-labelledby="notificationDropdown">
+            <a class="dropdown-item" href="#">WebAnw2 entfällt!</a>
+            <a class="dropdown-item" href="#">IT-Recht entfällt!</a>
+            <a class="dropdown-item" href="#">CybSec raum wechsel!</a>
+          </div>
+        </div>
+
+        <div class="vr"></div>
+        -->
+      </div>
+      <!--Dark Mode Toggle-->
+      <div class=" text-end dropdown bd-mode-toggle">
+        <!-- SVG-Symbole für die Icons -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+          <symbol id="check2" viewBox="0 0 16 16">
+            <path
+              d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
+          </symbol>
+          <symbol id="circle-half" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z" />
+          </symbol>
+          <symbol id="moon-stars-fill" viewBox="0 0 16 16">
+            <path
+              d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z" />
+            <path
+              d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z" />
+          </symbol>
+          <symbol id="sun-fill" viewBox="0 0 16 16">
+            <path
+              d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z" />
+          </symbol>
+        </svg>
+        <!-- Button zum Umschalten des Themas -->
+        <button class="btn dropdown-toggle d-flex align-items-center me-3" id="bd-theme" type="button"
+          aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (auto)">
+          <!-- Icon fuer aktulles Theme -->
+          <svg class="bi my-1 theme-icon-active" width="1em" height="1em">
+            <use href="#circle-half"></use>
+          </svg>
+          <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
+        </button>
+        <!-- Dropdown-Menü für Themes-->
+        <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
+          <li>
+            <!-- Helles Theme -->
+            <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light"
+              aria-pressed="false">
+              <svg class="bi me-2 opacity-50" width="1em" height="1em">
+                <use href="#sun-fill"></use>
+              </svg>
+              Light
+              <svg class="bi ms-auto d-none" width="1em" height="1em">
+                <use href="#check2"></use>
+              </svg>
+            </button>
+          </li>
+          <li>
+            <!-- Dunkles Theme -->
+            <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark"
+              aria-pressed="false">
+              <svg class="bi me-2 opacity-50" width="1em" height="1em">
+                <use href="#moon-stars-fill"></use>
+              </svg>
+              Dark
+              <svg class="bi ms-auto d-none" width="1em" height="1em">
+                <use href="#check2"></use>
+              </svg>
+            </button>
+          </li>
+          <li>
+            <!-- Automatisches Theme -->
+            <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto"
+              aria-pressed="true">
+              <svg class="bi me-2 opacity-50" width="1em" height="1em">
+                <use href="#circle-half"></use>
+              </svg>
+              Auto
+              <svg class="bi ms-auto d-none" width="1em" height="1em">
+                <use href="#check2"></use>
+              </svg>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  <!-- Ende der Navbar -->  
+  </nav>
+  <!--main (Calendar + aside)-->
+  <!-- Hauptinhalt des Dokuments-->
+  <main class="container-">
+    <!--Calendar-->
+    <div class="calendar">
+      <!--Toolbox-->
+      <div class="toolbox">
+        <div>
+          <!--Linke Seite -->
+          <div>
+            <!--  Leerer Absatz auf der linken Seite der Werkzeugleiste -->
+            <p></p>
+          </div>
+        </div>
+        <!--Flexbox-Container für zentrierten Inhalt-->
+        <div class="d-flex flex-column align-items-center">
+          <!-- Mittlere Seite -->
+          <!--Buttons für Kalendersteuerung-->
+          <div>
+            <!-- Button letzte Woche -->
+            <button type="button" class="btn btn-outline-primary me-2" id="btn-last-week">
+              &lt;
+            </button>
+            <!-- Button diese Woche -->
+            <button type="button" class="btn btn-outline-primary me-2" id="btn-today">
+              Heute
+            </button>
+            <!-- Button nächste Woche -->
+            <button type="button" class="btn btn-outline-primary me-2" id="btn-next-week">
+              &gt;
+            </button>
+          </div>
+          <!-- Container für den Datumsanzeiger -->
+          <div class="mt-3" id="date-indicator">
+          </div>
+        </div>
+        <div>
+          <!-- Rechte Seite -->
+          <!-- Button trigger modal-->
+          <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exportmenu">
+            Export
+          </button> -->
+
+          <!-- Export Modal -->
+          <div class="modal fade modal" id="exportmenu" tabindex="-1" aria-labelledby="exportmenuLabel"
+            aria-hidden="true">
+            <!--Bootstrap-Klassen zur Strukturierung-->
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <!-- Modaltitel-->
+                  <h1 class="modal-title fs-5" id="exportmenuLabel">Export Calendar Menu</h1>
+                  <!-- Button zum Schließen-->
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body px-5">
+                  <div class="">
+                    <!--Eingabefeld für die Startzeit -->
+                    <div class="w-100">
+                      <label class="" for="export-time-from">Von: </label>
+                      <input class="form-control" type="datetime-local" id="export-time-from">
+                      <script> const currentTime1 = new Date(); document.getElementById('export-time-from').value = currentTime1.toISOString().slice(0, 16);</script>
+                    </div>
+                    <!--Eingabefeld für die Endzeit -->
+                    <div class="w-100 mt-3">
+                      <label class="" for="export-time-to">Bis: </label>
+                      <input class="form-control" type="datetime-local" id="export-time-to">
+                      <script> const currentTime2 = new Date(); document.getElementById('export-time-to').value = currentTime2.toISOString().slice(0, 16);</script>
+                    </div>
+                  </div>
+                  <!--Dropdownmenue fuer Exportformat-->
+                  <div class="mt-3">
+                    <label class="" for="export-dropdown-format">Format: </label>
+                    <div class="w-100">
+                      <select class="form-select" id="export-dropdown-format">
+                        <option>iCal</option>
+                        <option>csv</option>
+                        <option>ics</option>
+                        <option>CalDAV</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="modal-footer">
+                  <!-- Schliesst das Modal-->
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Cancel
+                  </button>
+                  <!-- Exportiert die Daten -->
+                  <button type="button" class="btn btn-primary">
+                    Export
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Timetable-->
+      <div class="timetable" id="timetable">
+        <!--Vertikale und horizontale Gitterlinien zur visuellen Strukturierung-->
+        <!-- CSS-Grid-Styles definieren die Positionen der Linien-->
+        <div class="gridline-weak-vertical" style="grid-column: 2"></div>
+        <div class="gridline-weak-vertical" style="grid-column: 3"></div>
+        <div class="gridline-weak-vertical" style="grid-column: 4"></div>
+        <div class="gridline-weak-vertical" style="grid-column: 5"></div>
+        <div class="gridline-weak-vertical" style="grid-column: 6"></div>
+        <div class="gridline-weak-vertical" style="grid-column: 7"></div>
+        <div class="gridline-weak-vertical" style="
+              grid-column: 8;
+              border-left: 1px solid var(--bs-tertiary-color);
+            "></div>
+
+        <div class="gridline-weak" style="grid-row: 2"></div>
+        <div class="gridline-weak" style="grid-row: 8"></div>
+        <div class="gridline-weak" style="grid-row: 9"></div>
+        <div class="gridline-weak" style="grid-row: 15"></div>
+        <div class="gridline-weak" style="grid-row: 16"></div>
+        <div class="gridline-weak" style="grid-row: 22"></div>
+        <div class="gridline-weak" style="grid-row: 26"></div>
+        <div class="gridline-weak" style="grid-row: 32"></div>
+        <div class="gridline-weak" style="grid-row: 33"></div>
+        <div class="gridline-weak" style="grid-row: 39"></div>
+        <div class="gridline-weak" style="grid-row: 40"></div>
+        <div class="gridline-weak" style="grid-row: 46"></div>
+        <div class="gridline-weak-vertical" style="grid-column: 2"></div>
+        <!-- Titel der einzelnen Grids-->
+        <div class="grid-heading monday">Monday</div>
+        <div class="grid-heading tuesday">Tuesday</div>
+        <div class="grid-heading wednesday">Wednesday</div>
+        <div class="grid-heading thursday">Thursday</div>
+        <div class="grid-heading friday">Friday</div>
+        <div class="grid-heading saturday">Saturday</div>
+        <!-- Eintragen der Uhrzeiten-->
+        <div class="item-time" style="grid-row: 2 / 6; margin-bottom: 30%">
+          8:00
+        </div>
+        <div class="item-time" style="grid-row: 5 / 9">09:00</div>
+        <div class="item-time" style="grid-row: 9 / 13">10:00</div>
+        <div class="item-time" style="grid-row: 13 / 17">11:00</div>
+        <div class="item-time" style="grid-row: 17 / 21">12:00</div>
+        <div class="item-time" style="grid-row: 21 / 25">13:00</div>
+        <div class="item-time" style="grid-row: 25 / 29">14:00</div>
+        <div class="item-time" style="grid-row: 29 / 33">15:00</div>
+        <div class="item-time" style="grid-row: 33 / 37">16:00</div>
+        <div class="item-time" style="grid-row: 37 / 41">17:00</div>
+        <div class="item-time" style="grid-row: 41 / 44">18:00</div>
+        <div class="item-time" style="grid-row: 45 / 49">19:00</div>
+
+        <!-- //Beispiele für Kalendereinträge//
+        <div
+          class="bg-primary-subtle border-primary-subtle text-primary-emphasis item monday starttime-800 endtime-1115">
+          <strong>WebAnw2</strong><br>210-102<br>EpplSv</div>
+        <div
+          class="bg-success-subtle border-success-subtle text-success-emphasis item tuesday starttime-945 endtime-1115">
+          <strong>IT-Recht</strong><br>210-102<br>KühnHu</div>
+        <div
+          class="bg-danger-subtle border-danger-subtle text-danger-emphasis item wednesday starttime-1130 endtime-1300 text-decoration-line-through">
+          <strong>NetSysSich</strong><br>210-102<br>SchlDa</div>
+        <div
+          class="bg-warning-subtle border-warning-subtle text-warning-emphasis item thursday starttime-1400 endtime-1530">
+          <strong>CybSec</strong><br>210-102<br>MorgHo</div>
+        <div class="bg-info-subtle border-info-subtle text-info-emphasis item friday starttime-1545 endtime-1715">
+          <strong>BetSich</strong><br>210-102<br>RembDe</div>
+        <div
+          class="bg-primary-subtle border-primary-subtle text-primary-emphasis item saturday starttime-800 endtime-1900">
+          <strong>BigData</strong><br>210-102<br>EpplTh</div>-->
+      </div>
+    </div>
+    <!--Sidebar-->
+    <div class="sidebar flex-shrink-0 p-3">
+      <!--Dropdown-Menü zum Auswählen einer Klasse-->
+      <div class="dropdown pb-3 mb-3 border-bottom">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Klasse Auswählen
+        </button>
+        <!--Leere ul-Elemente für die Dropdown-Optionen und Klassen/Fächer-->
+        <ul id="klassenDropdown" class="dropdown-menu">
+
+        </ul>
+      </div>
+
+      <ul id="klassenAndSubjects" class="list-unstyled ps-0">
+
+      </ul>
+    </div>
+  </main>
+  <!-- Benachrichtigungsbox-->
+  <div id="alert-box" class="position-fixed bottom-0 p-4 d-flex align-items-right flex-column">
+  </div>
+  <!-- Einbindung von JavaScript- Dateien-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+  <script src="js/jquery-3.7.1.min.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/user.js"></script>
+  <script src="js/calendar.js"></script>
+</body>
+
+</html>
