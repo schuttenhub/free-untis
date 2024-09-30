@@ -1,4 +1,4 @@
-const BACKEND_URL = `http://${process.env.FREEUNTIS_SERVERNAME || 'localhost'}:${process.env.PORT_BACKEND || 8000}`;
+import { BACKEND_URL } from './config.js';
 
 function login() {
     username = document.getElementById('floatingInput').value;

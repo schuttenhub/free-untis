@@ -82,4 +82,4 @@ CREATE TABLE lessons (
 );
 
 -- Erstellen eines Users TEMPORAER!!!!
-INSERT INTO users (id, username, password) VALUES (1, 'test', '$argon2id$v=19$m=19456,t=2,p=1$FhSLHwChP3uhj5jK0AAB/A$i1kfRkkG6fcgJNMArvQjf7sbuCjAq5dMC7YmkqqoSks');
+-- INSERT INTO users (id, username, password) VALUES (1, 'test', '$argon2id$v=19$m=19456,t=2,p=1$FhSLHwChP3uhj5jK0AAB/A$i1kfRkkG6fcgJNMArvQjf7sbuCjAq5dMC7YmkqqoSks');
