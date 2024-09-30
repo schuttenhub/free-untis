@@ -4,8 +4,7 @@
 - Clone the repo to your desired destination
 - Create a <code>.env</code> File 
 - Type the following content:
-<code>
-PORT_BACKEND=8000
+<code>PORT_BACKEND=8000
 PORT_FRONTEND=3000
 FREEUNTIS_SERVERNAME=localhost
 TOKEN_SECRET=your_token_secret
