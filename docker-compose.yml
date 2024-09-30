@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  frontend:
+    container_name: frontend
+    build: ./frontend
+    env_file:
+      - ./frontend/.env
+    ports:  
+      - "3000:3000"
+    volumes:
+      - ./frontend/app:/home/node/app  # Maps the host directory './Frontend/app' to '/home/node/app' in the container
+
+  backend:
+    container_name: backend
+    build: ./backend
+    env_file:
+      - ./backend/.env
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend/app:/home/node/app  # Maps the host directory './Backend' to '/app' in the container
