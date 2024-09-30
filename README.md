@@ -2,12 +2,18 @@
 
 ## How to Install
 - Clone the repo to your desired destination
-### Optional (but highly recommended)
-- In the frontend and backend directory, create a <code>.env</code> file
-- In both .env files, specify a <code>PORT=1234</code> environment variable with your desired port (Default is 3000 for frontend and 8000 for backend)
-- In the backend .env file, additionally specify your private key for storing user passwords in the database and authenticating them like this: </br>
-<code>TOKEN_SECRET=your_token_secret</code> </br>
-- Fire up your ready-to-go Container with <code>docker compose up -d</code>
+- Create a <code>.env</code> File 
+- Type the following content:
+<code>
+PORT_BACKEND=8000
+PORT_FRONTEND=3000
+FREEUNTIS_SERVERNAME=localhost
+TOKEN_SECRET=your_token_secret
+</code>
+- You MUST specify the TOKEN_SECRET, otherwise the application will not run!
+- If you don't specify the PORTs, the default will be 3000 for frontend and 8000 for backend.
+- If you don't specify the FREEUNTIS_SERVERNAME, the default will be localhost.
+
 
 ## Lokal Testen
 ### Docker Compose
