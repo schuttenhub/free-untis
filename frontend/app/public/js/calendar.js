@@ -1,4 +1,6 @@
 // Globale Variablen für den Start- und Enddatum-Bereich sowie Farben und Farbcodierung für Klassen
+const BACKEND_URL = `http://${process.env.FREEUNTIS_SERVERNAME || 'localhost'}:${process.env.PORT_BACKEND || 8000}`;
+
 var startDate;
 var endDate;
 const colors = ["primary", "success", "warning", "info", "secondary"];
@@ -46,8 +48,7 @@ function createKlassenDropdown() {
 // Asynchrone Funktion zum Erstellen des Menüs für Benutzerklassen und deren Fächer
 async function createUserKlassenMenu() {
   try {
-    const response = await fetch(
-      "http://localhost:8000/getUserKlassenAndSubjects",
+    const response = await fetch(BACKEND_URL + "/getUserKlassenAndSubjects",
       {
         method: "GET",
         credentials: "include",

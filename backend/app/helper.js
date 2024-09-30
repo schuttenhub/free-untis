@@ -1,11 +1,6 @@
 const jwt = require('jsonwebtoken');
-const JWT_SECRET = process.env.TOKEN_SECRET || '123456';
+const JWT_SECRET = process.env.TOKEN_SECRET;
 
-if (JWT_SECRET == '123456') {
-  console.log('WARNING! Default JWT Token is used, Application is insecure!');
-  console.log('WARNING! Please change Secret using .env file in Backend directory!');
-  console.log('WARNING! change/add: "TOKEN_SECRET=your_token_secret"');
-}
 // middleware to test if authenticated
 module.exports.isAuthenticated = function(req, res, next) {
     if (req.session.user) next()

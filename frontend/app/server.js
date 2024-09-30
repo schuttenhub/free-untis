@@ -4,7 +4,7 @@ const express = require("express");
 // Initialisierung einer Express-Anwendung
 const app = express();
 // Festlegen des Server-Ports
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT_FRONTEND || 3000;
 // Falls keine Umgebungsvariable gesetzt ist, wird der Port 3000 verwendet.
 
 

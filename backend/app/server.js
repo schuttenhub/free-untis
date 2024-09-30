@@ -1,4 +1,4 @@
-const HTTP_PORT = process.env.PORT || 8000;
+const HTTP_PORT = process.env.PORT_BACKEND || 8000;
 const TOPLEVELPATH = "/"
 
 try {

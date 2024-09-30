@@ -1,3 +1,5 @@
+const BACKEND_URL = `http://${process.env.FREEUNTIS_SERVERNAME || 'localhost'}:${process.env.PORT_BACKEND || 8000}`;
+
 function login() {
     username = document.getElementById('floatingInput').value;
     password = document.getElementById('floatingPassword').value;
@@ -19,7 +21,7 @@ function register() {
 
 
 function logout() {
-  fetch('http://localhost:8000/logout', {
+  fetch(BACKEND_URL + '/logout', {
     method: 'GET',
     credentials: 'include'
   })

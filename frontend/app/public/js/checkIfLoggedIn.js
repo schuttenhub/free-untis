@@ -1,5 +1,7 @@
+const BACKEND_URL = `http://${process.env.FREEUNTIS_SERVERNAME || 'localhost'}:${process.env.PORT_BACKEND || 8000}`;
+
 (function() {
-    fetch('http://localhost:8000/current_user', {
+    fetch(BACKEND_URL + '/current_user', {
         method: 'GET',
         credentials: 'include'
     })

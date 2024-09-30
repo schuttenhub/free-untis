@@ -1,5 +1,4 @@
-const BACKEND_URL = "http://localhost:8000"
-
+const BACKEND_URL = `http://${process.env.FREEUNTIS_SERVERNAME || 'localhost'}:${process.env.PORT_BACKEND || 8000}`;
 
 /*
 Shows Alert in alert-box contining specified message
